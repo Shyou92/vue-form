@@ -1,1 +1,40 @@
 @import './variables.scss';
+
+.app {
+  display: $flex;
+  justify-content: $center;
+}
+
+.form {
+  display: $flex;
+  flex-direction: $column;
+  border: $border;
+  width: $form-width;
+  margin: 0 auto;
+
+  .form__container {
+    display: $flex;
+    flex-direction: $column;
+    align-items: $center;
+    border: none;
+    border-bottom: 1px solid #000;
+    margin: 0;
+  }
+
+  .form__label {
+    margin-bottom: .5rem;
+  }
+
+  .form__item {
+    margin-bottom: .1rem;
+  }
+
+  .form__item-select {
+    margin-bottom: .5rem;
+  }
+
+  .form__error {
+    margin-bottom: .5rem;
+    color: $red;
+  }
+}
