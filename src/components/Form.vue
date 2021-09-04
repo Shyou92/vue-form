@@ -81,6 +81,7 @@
       <span class='form__error form__error_active'>Ошибка!</span>
     </fieldset>
     
+    <button class="form__submit">Отправить</button>
     <span>* Поле обязательное для заполнения.</span>
   </form>
 </template>
