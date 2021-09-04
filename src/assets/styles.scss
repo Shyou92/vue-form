@@ -21,12 +21,23 @@
     margin: 0;
   }
 
+  .form__itemContainer {
+    display: $flex;
+    flex-direction: $column;
+    align-items: $center;
+    position: relative;
+    width: 50%;
+  }
+
   .form__label {
-    margin-bottom: .5rem;
+    margin-bottom: 5px;
   }
 
   .form__item {
-    margin-bottom: .1rem;
+    margin-bottom: 25px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid $black;
   }
 
   .form__item-select {
@@ -36,5 +47,19 @@
   .form__error {
     margin-bottom: .5rem;
     color: $red;
+    opacity: 0;
+    font-size: 12px;
+    position: absolute;
+    top: 70%;
+  }
+
+  .form__inputError {
+    border-bottom-color: $red;
+    transition: .4s;
+  }
+
+  .form__errorActive {
+    transition: .5s;
+    opacity: 1;
   }
 }
