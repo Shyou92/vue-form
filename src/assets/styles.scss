@@ -1,24 +1,28 @@
+@import '../vendor/normalize.css';
 @import './variables.scss';
+@import './mixins.scss';
+@import './templates.scss';
 
-.app {
-  display: $flex;
-  justify-content: $center;
+#app {
+  background-color: $lightgrey;
+  padding: 10px;
 }
 
 .form {
-  display: $flex;
-  flex-direction: $column;
+  @extend %flexColumnAlignCenter;
+  background-color: $white;
   border: $border;
   width: $form-width;
   margin: 0 auto;
+  padding: 10px;
 
   .form__container {
-    display: $flex;
-    flex-direction: $column;
-    align-items: $center;
+    @extend %flexColumnAlignCenter;
     border: none;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid $black;
     margin: 0;
+    padding: 0;
+    width: 100%;
   }
 
   .form__container:nth-last-of-type(1) {
@@ -26,36 +30,49 @@
   }
 
   .form__itemContainer {
-    display: $flex;
-    flex-direction: $column;
-    align-items: $center;
+    @extend %flexColumnAlignCenter, %w100;
     position: relative;
-    width: 50%;
   }
 
   .form__label {
+    @extend %w100;
     margin-bottom: 5px;
+    font-size: $fontInputSize;
+    text-align: center;
   }
 
   .form__item {
-    margin-bottom: 25px;
+    @extend %w100;
+    margin-bottom: $mb25;
     border: none;
     outline: none;
+    font-size: $fontInputSize;
     border-bottom: 1px solid $black;
+  }
+
+  .form__selectOption {
+    font-size: $fontInputSize;
+    padding: 0;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .form__labelCheck {
+    width: 35%;
   }
 
   .form__itemCheckbox {
     flex-direction: row;
-    justify-content: $center;
+    justify-content: center;
   }
 
   .form__select {
-    margin-bottom: 25px;
+    margin-bottom: $mb25;
   }
 
   .form__submit {
-    margin-top: 5px;
-    align-self: $center;
+    margin-top: 15px;
+    align-self: center;
     width: 15%;
     height: 30px;
     background-color: #42b983;
@@ -74,13 +91,19 @@
     margin: 10px 5px 5px 0;
   }
 
-  .form__selectMultiple {
-    overflow: hidden;
-    outline: none;
-    cursor: pointer;
+  .form__select {
+    @extend %overflowHiddenNoOutlinePointer;
+    text-align: center;
   }
+
+  .form__selectMultiple {
+    @extend %overflowHiddenNoOutlinePointer, %w100;
+    text-align: center;
+  }
+
   .form__itemSms {
-    margin: -5px 0 0 5px;
+    margin: -5px 0 0 0;
+    width: 5%;
   }
 
   .form__selectMultipleError {

@@ -8,12 +8,12 @@
         <span class='form__error'
           v-if="$v.surname.$dirty && !$v.surname.required"
           :class='{form__errorActive: ($v.surname.$dirty && !$v.surname.required)}'
-          >Поле Фамилия обязательное для заполнения!
+          >Поле Фамилия обязательное для заполнения
         </span>
           <span class='form__error'
           v-else-if="$v.surname.$dirty && !$v.surname.alpha"
           :class='{form__errorActive: ($v.surname.$dirty && !$v.surname.alpha)}'
-          >Поле Фамилия может состоять только из букв!
+          >Поле Фамилия должно иметь текстовый формат
         </span>
         <span class='form__error' 
           v-else-if="$v.surname.$dirty && !$v.surname.minLength"
@@ -27,12 +27,12 @@
         :class='{form__inputError: ($v.firstname.$dirty && !$v.firstname.required)}'>
         <span class='form__error' v-if="$v.firstname.$dirty && !$v.firstname.required"
           :class='{form__errorActive: ($v.firstname.$dirty && !$v.firstname.required)}'
-          >Поле Имя обязательное для заполнения!
+          >Поле Имя обязательное для заполнения
         </span>
         <span class='form__error'
           v-else-if="$v.firstname.$dirty && !$v.firstname.alpha"
           :class='{form__errorActive: ($v.firstname.$dirty && !$v.firstname.alpha)}'
-          >Поле Имя может состоять только из букв!
+          >Поле Имя должно иметь текстовый формат
         </span>
         <span class='form__error' 
           v-else-if="$v.firstname.$dirty && !$v.firstname.minLength"
@@ -46,12 +46,12 @@
         <span class='form__error'
           v-if="$v.lastname.$dirty && !$v.lastname.alpha"
           :class='{form__errorActive: ($v.lastname.$dirty && !$v.lastname.alpha)}'
-          >Поле Отчество может состоять только из букв!
+          >Поле Отчество должно иметь текстовый формат
         </span>
         <span class='form__error'
           v-else-if="$v.lastname.$dirty && !$v.lastname.minLength"
           :class='{form__errorActive: ($v.lastname.$dirty && !$v.lastname.minLength)}'
-          >Поле Отчество должно быть длиной больше, чем {{$v.lastname.$params.minLength.min}} символа!
+          >Поле Отчество должно быть длиной больше, чем {{$v.lastname.$params.minLength.min}} символа
         </span>
       </div>
       <div class='form__itemContainer'>
@@ -61,32 +61,32 @@
         <span class='form__error'
           v-if="$v.dateOfBirth.$dirty && !$v.dateOfBirth.required"
           :class='{form__errorActive: ($v.dateOfBirth.$dirty && !$v.dateOfBirth.required)}'
-          >Поле Дата Рождения обязательно для заполнения!
+          >Поле Дата Рождения обязательно для заполнения
         </span>
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="phone">Номер телефона*</label>
-        <input  class='form__item' type="tel" name="" id="phone" v-model.trim='phone'
+        <input  class='form__item' type="tel"  id="phone" v-model.trim='phone'
           :class='{form__inputError: ($v.phone.$dirty && !$v.phone.required)}'>
         <span class='form__error' 
           v-if="$v.phone.$dirty && !$v.phone.required"
           :class='{form__errorActive: ($v.phone.$dirty && !$v.phone.required)}'
-          >Поле Номер Телефона обязательно для заполнения!
+          >Поле Номер Телефона обязательно для заполнения
         </span>
         <span class='form__error' 
           v-else-if="$v.phone.$dirty && !$v.phone.numeric"
           :class='{form__errorActive: ($v.phone.$dirty && !$v.phone.numeric)}'
-          >Поле Номер Телефона должно состоять только из цифр!
+          >Поле Номер Телефона должно состоять только из цифр
         </span>
         <span class='form__error' 
           v-else-if="$v.phone.$dirty && !$v.phone.minLength"
           :class='{form__errorActive: ($v.phone.$dirty && !$v.phone.minLength)}'
-          >Поле Номер Телефона должно иметь {{$v.phone.$params.minLength.min}} цифр!
+          >Поле Номер Телефона должно иметь {{$v.phone.$params.minLength.min}} цифр
         </span>
         <span class='form__error' 
           v-else-if="$v.phone.$dirty && !$v.phone.maxLength"
           :class='{form__errorActive: ($v.phone.$dirty && !$v.phone.maxLength)}'
-          >Поле Номер Телефона должно иметь {{$v.phone.$params.maxLength.max}} цифр!
+          >Поле Номер Телефона должно иметь {{$v.phone.$params.maxLength.max}} цифр
         </span>
       </div>
       <div class='form__itemContainer'>
@@ -97,7 +97,7 @@
         <span class='form__error'
           v-if="$v.gender.$dirty && !$v.gender.alpha"
           :class='{form__errorActive: ($v.gender.$dirty && !$v.gender.alpha)}'
-          >Поле Пол должно иметь текстовый формат!
+          >Поле Пол должно иметь текстовый формат
         </span>
       </div>
       <div class='form__itemContainer'>
@@ -105,26 +105,26 @@
         <select class='form__select form__selectMultiple' size='3'
         multiple id="clients" v-model="selected"
         :class='{form__selectMultipleError: ($v.selected.$dirty && !$v.selected.required)}'>
-          <option value="vip">VIP</option>
-          <option value="problem">Проблемные</option>
-          <option value="oms">ОМС</option>
+          <option value="vip" class='form__selectOption'>VIP</option>
+          <option value="problem" class='form__selectOption'>Проблемные</option>
+          <option value="oms" class='form__selectOption'>ОМС</option>
       </select>
         <span class='form__error form__errorSelectMultiple'
           v-if="$v.selected.$dirty && !$v.selected.required"
           :class='{form__errorActive: ($v.selected.$dirty && !$v.selected.required)}'
-          >Выберите обязательно хотя бы одно поле!
+          >Выберите обязательно хотя бы одно поле
         </span>
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="doctor">Лечащий врач</label>
-        <select class='form__item form__selectMultiple' id="doctor">
+        <select class='form__item form__select' id="doctor">
           <option value="ivanov">Иванов</option>
           <option value="zakharova">Захаров</option>
           <option value="chernysheva">Чернышева</option>
       </select>
       </div>
       <div class='form__itemContainer form__itemCheckbox'>
-        <label class='form__label' for="sms">Не отправлять СМС</label>
+        <label class='form__label form__labelCheck' for="sms">Не отправлять СМС</label>
         <input class='form__item form__itemSms' type="checkbox" id="sms">
       </div> 
     </fieldset>
@@ -139,17 +139,17 @@
         <span class='form__error' 
           v-if="$v.postindex.$dirty && !$v.postindex.numeric"
           :class='{form__errorActive: ($v.postindex.$dirty && !$v.postindex.numeric)}'
-          >Поле Индекс должно состоять только из цифр!
+          >Поле Индекс должно состоять только из цифр
         </span>
         <span class='form__error' 
           v-else-if="$v.postindex.$dirty && !$v.postindex.minLength"
           :class='{form__errorActive: ($v.postindex.$dirty && !$v.postindex.minLength)}'
-          >Поле Индекс должно быть длиной в {{$v.postindex.$params.minLength.min}} символов!
+          >Поле Индекс должно быть длиной в {{$v.postindex.$params.minLength.min}} символов
         </span>
         <span class='form__error' 
           v-else-if="$v.postindex.$dirty && !$v.postindex.maxLength"
           :class='{form__errorActive: ($v.postindex.$dirty && !$v.postindex.maxLength)}'
-          >Поле Индекс должно быть длиной в {{$v.postindex.$params.maxLength.max}} символов!
+          >Поле Индекс должно быть длиной в {{$v.postindex.$params.maxLength.max}} символов
         </span>
       </div>
       <div class='form__itemContainer'>
@@ -160,7 +160,7 @@
         <span class='form__error'
           v-if="$v.country.$dirty && !$v.country.alpha"
           :class='{form__errorActive: ($v.country.$dirty && !$v.country.alpha)}'
-          >Поле Страна должно иметь текстовый формат!
+          >Поле Страна должно иметь текстовый формат
         </span>
       </div>
       <div class='form__itemContainer'>
@@ -171,7 +171,7 @@
         <span class='form__error'
           v-if="$v.country.$dirty && !$v.region.alpha"
           :class='{form__errorActive: ($v.region.$dirty && !$v.region.alpha)}'
-          >Поле Область должно иметь текстовый формат!
+          >Поле Область должно иметь текстовый формат
         </span>
       </div>
       <div class='form__itemContainer'>
@@ -183,7 +183,7 @@
         <span class='form__error' 
           v-if="$v.city.$dirty && !$v.city.required"
           :class='{form__errorActive: ($v.city.$dirty && !$v.city.required)}'
-          >Поле Город обязательно для заполнения!
+          >Поле Город обязательно для заполнения
         </span>
         <span class='form__error' 
           v-else-if="$v.city.$dirty && !$v.city.minLength"
@@ -193,7 +193,7 @@
         <span class='form__error' 
           v-else-if="$v.city.$dirty && !$v.city.alpha"
           :class='{form__errorActive: ($v.city.$dirty && !$v.city.alpha)}'
-          >Поле Город должно состоять из букв
+          >Поле Город должно иметь текстовый формат
         </span>
       </div>
       <div class='form__itemContainer'>
@@ -208,7 +208,7 @@
         <span class='form__error'
           v-if="$v.houseNumber.$dirty && !$v.houseNumber.numeric"
           :class='{form__errorActive: ($v.houseNumber.$dirty && !$v.houseNumber.numeric)}'
-          >Поле Улица должно иметь цифровой формат!
+          >Поле Дом должно иметь цифровой формат
         </span>
       </div>
     </fieldset>
@@ -216,19 +216,19 @@
       <h3 class='form__item-header'>Паспорт:</h3>
       <div class='form__itemContainer'>
         <label class='form__label' for="document">Тип документа*</label>
-        <select class='form__select' id="document" v-model="typeOfDocument">
+        <select class='form__item form__select' id="document" v-model="typeOfDocument">
           <option value="passport">Паспорт</option>
           <option value="certificate-of-birth">Свидетельство о рождении</option>
           <option value="driver-license">Вод. удостоверение</option>
         </select>
         <span class='form__error' 
-          v-if="$v.city.$dirty && !$v.city.required"
+          v-if="$v.typeOfDocument.$dirty && !$v.typeOfDocument.required"
           :class='{form__errorActive: ($v.typeOfDocument.$dirty && !$v.typeOfDocument.required)}'
           >Выберите тип документа</span>
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="docs-series">Серия</label>
-        <input class='form__item' type="text" name="" id="docs-series">
+        <input class='form__item' type="text"  id="docs-series">
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="docs-number">Номер</label>
@@ -242,37 +242,37 @@
         <span class='form__error'
           v-if="$v.documentNumber.$dirty && !$v.documentNumber.numeric"
           :class='{form__errorActive: ($v.documentNumber.$dirty && !$v.documentNumber.numeric)}'
-        >Поле Номер Документа должно состоять из цифр!
+        >Поле Номер Документа должно состоять из цифр
         </span>
         <span class='form__error'
           v-else-if="$v.documentNumber.$dirty && !$v.documentNumber.minLength"
           :class='{form__errorActive: ($v.documentNumber.$dirty && !$v.documentNumber.minLength)}'
-        >Поле Номер Документа должно состоять {{$v.documentNumber.$params.minLength.min}} цифр!
+        >Поле Номер Документа должно состоять {{$v.documentNumber.$params.minLength.min}} цифр
         </span>
         <span class='form__error'
           v-else-if="$v.documentNumber.$dirty && !$v.documentNumber.maxLength"
           :class='{form__errorActive: ($v.documentNumber.$dirty && !$v.documentNumber.maxLength)}'
-        >Поле Номер Документа должно состоять {{$v.documentNumber.$params.maxLength.max}} цифр!
+        >Поле Номер Документа должно состоять {{$v.documentNumber.$params.maxLength.max}} цифр
         </span>
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="docs-organization">Кем выдан</label>
-        <input class='form__item' type="text" name="" id="docs-organization">
+        <input class='form__item' type="text"  id="docs-organization">
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="date-of-issue">Дата выдачи*</label>
-        <input class='form__item' type="date" name="" id="date-of-issue"
+        <input class='form__item' type="date"  id="date-of-issue"
           v-model='dateOfIssue'
           :class='{form__inputError: ($v.dateOfIssue.$dirty && !$v.dateOfIssue.required)}'
         >
         <span class='form__error' 
           v-if="$v.dateOfIssue.$dirty && !$v.dateOfIssue.required"
           :class='{form__errorActive: ($v.dateOfIssue.$dirty && !$v.dateOfIssue.required)}'
-        >Поле Дата Выдачи обязательно для заполнения!</span>
+        >Поле Дата Выдачи обязательно для заполнения</span>
       </div>
     </fieldset>
     <button class="form__submit">Отправить</button>
-    <span class='form__warning'>* Поле обязательное для заполнения.</span>
+    <span class='form__warning'>* Поле, обязательное для заполнения.</span>
   </form>
 </template>
 
@@ -323,6 +323,6 @@ export default {
         return;
       }
     }
-  }
+  },
 }
 </script>

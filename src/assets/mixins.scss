@@ -1,0 +1,15 @@
+%flexColumnAlignCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+%overflowHiddenNoOutlinePointer {
+  overflow: hidden;
+  outline: none;
+  cursor: pointer;
+}
+
+%w100 {
+  width: 60%;
+}
