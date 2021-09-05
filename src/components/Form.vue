@@ -134,10 +134,6 @@
         <input class='form__item' type="text" id="region">
       </div>
       <div class='form__itemContainer'>
-        <label class='form__label' for="region">Область</label>
-        <input class='form__item' type="text" name="" id="region">
-      </div>
-      <div class='form__itemContainer'>
         <label class='form__label' for="city">Город*</label>
         <input class='form__item' type="text" id="city"
         v-model="city"
