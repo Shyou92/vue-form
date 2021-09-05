@@ -10,6 +10,11 @@
           :class='{form__errorActive: ($v.surname.$dirty && !$v.surname.required)}'
           >Поле Фамилия обязательное для заполнения!
         </span>
+          <span class='form__error'
+          v-else-if="$v.surname.$dirty && !$v.surname.alpha"
+          :class='{form__errorActive: ($v.surname.$dirty && !$v.surname.alpha)}'
+          >Поле Фамилия может состоять только из букв!
+        </span>
         <span class='form__error' 
           v-else-if="$v.surname.$dirty && !$v.surname.minLength"
           :class='{form__errorActive: ($v.surname.$dirty && !$v.surname.minLength)}'
@@ -24,6 +29,11 @@
           :class='{form__errorActive: ($v.firstname.$dirty && !$v.firstname.required)}'
           >Поле Имя обязательное для заполнения!
         </span>
+        <span class='form__error'
+          v-else-if="$v.firstname.$dirty && !$v.firstname.alpha"
+          :class='{form__errorActive: ($v.firstname.$dirty && !$v.firstname.alpha)}'
+          >Поле Имя может состоять только из букв!
+        </span>
         <span class='form__error' 
           v-else-if="$v.firstname.$dirty && !$v.firstname.minLength"
           :class='{form__errorActive: ($v.firstname.$dirty && !$v.firstname.minLength)}'
@@ -32,7 +42,17 @@
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="lastname">Отчество</label>
-        <input  class='form__item' type="text" id="lastname">
+        <input  class='form__item' type="text" id="lastname" v-model='lastname'>
+        <span class='form__error'
+          v-if="$v.lastname.$dirty && !$v.lastname.alpha"
+          :class='{form__errorActive: ($v.lastname.$dirty && !$v.lastname.alpha)}'
+          >Поле Отчество может состоять только из букв!
+        </span>
+        <span class='form__error'
+          v-else-if="$v.lastname.$dirty && !$v.lastname.minLength"
+          :class='{form__errorActive: ($v.lastname.$dirty && !$v.lastname.minLength)}'
+          >Поле Отчество должно быть длиной больше, чем {{$v.lastname.$params.minLength.min}} символа!
+        </span>
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="date-of-birth">Дата Рождения*</label>
@@ -61,17 +81,24 @@
         <span class='form__error' 
           v-else-if="$v.phone.$dirty && !$v.phone.minLength"
           :class='{form__errorActive: ($v.phone.$dirty && !$v.phone.minLength)}'
-          >Поле Номер Телефона должно иметь 11 цифр!
+          >Поле Номер Телефона должно иметь {{$v.phone.$params.minLength.min}} цифр!
         </span>
         <span class='form__error' 
           v-else-if="$v.phone.$dirty && !$v.phone.maxLength"
           :class='{form__errorActive: ($v.phone.$dirty && !$v.phone.maxLength)}'
-          >Поле Номер Телефона должно иметь 11 цифр!
+          >Поле Номер Телефона должно иметь {{$v.phone.$params.maxLength.max}} цифр!
         </span>
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="gender">Пол</label>
-        <input  class='form__item' type="text" name="" id="gender">
+        <input class='form__item' type="text" id="gender" v-model="gender"
+          :class='{form__inputError: ($v.gender.$dirty && !$v.gender.alpha)}'
+        >
+        <span class='form__error'
+          v-if="$v.gender.$dirty && !$v.gender.alpha"
+          :class='{form__errorActive: ($v.gender.$dirty && !$v.gender.alpha)}'
+          >Поле Пол должно иметь текстовый формат!
+        </span>
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="clients">Группа клиентов*</label>
@@ -98,7 +125,7 @@
       </div>
       <div class='form__itemContainer form__itemCheckbox'>
         <label class='form__label' for="sms">Не отправлять СМС</label>
-        <input class='form__item form__itemSms' type="checkbox" name="" id="sms">
+        <input class='form__item form__itemSms' type="checkbox" id="sms">
       </div> 
     </fieldset>
     <fieldset class="form__container">
@@ -127,11 +154,25 @@
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="country">Страна</label>
-        <input class='form__item' type="text" id="country">
+        <input class='form__item' type="text" id="country" v-model="country"
+          :class='{form__inputError: ($v.country.$dirty && !$v.country.alpha)}'
+        >
+        <span class='form__error'
+          v-if="$v.country.$dirty && !$v.country.alpha"
+          :class='{form__errorActive: ($v.country.$dirty && !$v.country.alpha)}'
+          >Поле Страна должно иметь текстовый формат!
+        </span>
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="region">Область</label>
-        <input class='form__item' type="text" id="region">
+        <input class='form__item' type="text" id="region" v-model="region"
+          :class='{form__inputError: ($v.region.$dirty && !$v.region.alpha)}'
+        >
+        <span class='form__error'
+          v-if="$v.country.$dirty && !$v.region.alpha"
+          :class='{form__errorActive: ($v.region.$dirty && !$v.region.alpha)}'
+          >Поле Область должно иметь текстовый формат!
+        </span>
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="city">Город*</label>
@@ -157,11 +198,18 @@
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="street">Улица</label>
-        <input class='form__item' type="text" name="" id="street">
+        <input class='form__item' type="text" id="street" v-model="street">
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="house-number">Дом</label>
-        <input class='form__item' type="text" name="" id="house-number">
+        <input class='form__item' type="text" id="house-number" v-model="houseNumber" 
+          :class='{form__inputError: ($v.houseNumber.$dirty && !$v.houseNumber.numeric)}'
+        >
+        <span class='form__error'
+          v-if="$v.houseNumber.$dirty && !$v.houseNumber.numeric"
+          :class='{form__errorActive: ($v.houseNumber.$dirty && !$v.houseNumber.numeric)}'
+          >Поле Улица должно иметь цифровой формат!
+        </span>
       </div>
     </fieldset>
     <fieldset class="form__container">
@@ -235,23 +283,35 @@ export default {
   data: () => ({
       surname: '',
       firstname: '',
+      lastname: '',
       dateOfBirth: '',
       phone: '7',
+      gender: '',
       selected: [],
       postindex: '',
+      country: '',
+      region: '',
       city: '',
+      street: '',
+      houseNumber: '',
       typeOfDocument: '',
       documentNumber: '',
       dateOfIssue: '',
   }),
   validations: {
-    surname: { required, minLength: minLength(2) },
-    firstname: { required, minLength: minLength(2) },
+    surname: { required, minLength: minLength(2), alpha },
+    firstname: { required, minLength: minLength(2), alpha },
+    lastname: { minLength: minLength(2), alpha },
     dateOfBirth: { required },
     phone: { required, numeric, minLength: minLength(11), maxLength: maxLength(11) },
+    gender: { alpha },
     selected: { required },
     postindex: { numeric, minLength: minLength(6), maxLength: maxLength(6)},
+    country: { alpha },
+    region: { alpha },
     city: { required, alpha, minLength: minLength(2) },
+    street: { alpha },
+    houseNumber: { numeric },
     typeOfDocument: { required },
     documentNumber: { numeric, minLength: minLength(6), maxLength: maxLength(6) },
     dateOfIssue: { required },
