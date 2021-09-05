@@ -1,7 +1,6 @@
 @import '../vendor/normalize.css';
 @import './variables.scss';
 @import './mixins.scss';
-@import './templates.scss';
 
 #app {
   background-color: $lightgrey;
@@ -48,6 +47,9 @@
     outline: none;
     font-size: $fontInputSize;
     border-bottom: 1px solid $black;
+    @media screen and (max-width: 1182px) {
+      margin-bottom: 35px;
+    }
   }
 
   .form__selectOption {
@@ -56,14 +58,18 @@
     width: 100%;
     margin: 0 auto;
   }
-
-  .form__labelCheck {
-    width: 35%;
-  }
-
+  
   .form__itemCheckbox {
     flex-direction: row;
     justify-content: center;
+  }
+
+  .form__labelCheck {
+    width: 35%;
+    @media screen and (max-width: 1182px) {
+      width: 60%;
+      margin-right: 5px;
+    }
   }
 
   .form__select {
@@ -84,6 +90,13 @@
       background-color: #43b380c2;
       transition: .3s;
     }
+
+    @media screen and (max-width: 1490px) {
+      width: 20%;
+      @media screen and (max-width: 1182px) {
+        font-size: 14px;
+      }
+    }
   }
 
   .form__warning {
@@ -94,11 +107,17 @@
   .form__select {
     @extend %overflowHiddenNoOutlinePointer;
     text-align: center;
+    @media screen and (max-width: 1182px) {
+      margin-bottom: 25px;
+    }
   }
 
   .form__selectMultiple {
     @extend %overflowHiddenNoOutlinePointer, %w100;
     text-align: center;
+    @media screen and (max-width: 1182px) {
+      margin-bottom: 35px;
+    }
   }
 
   .form__itemSms {
@@ -117,10 +136,17 @@
     font-size: 12px;
     position: absolute;
     top: 70%;
+    @media screen and (max-width: 1182px) {
+      text-align: center;
+      top: 60%;
+    }
   }
 
   .form__errorSelectMultiple {
     top: 80%;
+    @media screen and (max-width: 1182px) {
+      top: 70%;
+    }
   }
 
   .form__inputError {
