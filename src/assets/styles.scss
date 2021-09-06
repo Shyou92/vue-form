@@ -14,6 +14,12 @@
   width: $form-width;
   margin: 0 auto;
   padding: 10px;
+  @media screen and (max-width: 1182px) {
+    width: 60%;
+  }
+  @media screen and (max-width: 720px) {
+    width: 70%;
+  }
 
   .form__container {
     @extend %flexColumnAlignCenter;
@@ -29,19 +35,25 @@
   }
 
   .form__itemContainer {
-    @extend %flexColumnAlignCenter, %w100;
+    @extend %flexColumnAlignCenter, %w60;
     position: relative;
+    @media screen and (max-width: 1182px) {
+      width: 80%;
+    }
+    @media screen and (max-width: 720px) {
+      width: 90%;
+    }
   }
 
   .form__label {
-    @extend %w100;
+    @extend %w60;
     margin-bottom: 5px;
     font-size: $fontInputSize;
     text-align: center;
   }
 
   .form__item {
-    @extend %w100;
+    @extend %w60;
     margin-bottom: $mb25;
     border: none;
     outline: none;
@@ -96,12 +108,25 @@
       @media screen and (max-width: 1182px) {
         font-size: 14px;
       }
+      @media screen and (max-width: 570px) {
+        width: 30%;
+      }
+      @media screen and (max-width: 400px) {
+        width: 40%;
+      }
     }
   }
 
   .form__warning {
     align-self: flex-end;
     margin: 10px 5px 5px 0;
+    @media screen and (max-width: 1182px) {
+      align-self: center;
+      margin-right: 0;
+    }
+    @media screen and (max-width: 720px) {
+      font-size: 12px;
+    }
   }
 
   .form__select {
@@ -113,7 +138,7 @@
   }
 
   .form__selectMultiple {
-    @extend %overflowHiddenNoOutlinePointer, %w100;
+    @extend %overflowHiddenNoOutlinePointer, %w60;
     text-align: center;
     @media screen and (max-width: 1182px) {
       margin-bottom: 35px;
