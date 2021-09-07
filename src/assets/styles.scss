@@ -4,6 +4,7 @@
 
 #app {
   background-color: $lightgrey;
+  position: relative;
   padding: 10px;
 }
 
@@ -183,4 +184,42 @@
     transition: .5s;
     opacity: 1;
   }
+}
+
+.clientSuccess {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition-property: visibility, opacity;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+
+  .clientSuccess__container {
+    width: 20%;
+    background-color: $white;
+    border: $border;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 15px;
+  }
+
+  .clientSuccess__image {
+    cursor: pointer;
+  }
+
+}
+
+.clientSuccess_isOpened {
+  visibility: visible;
+  opacity: 1;
 }

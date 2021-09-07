@@ -117,7 +117,7 @@
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="doctor">Лечащий врач</label>
-        <select class='form__item form__select' id="doctor">
+        <select class='form__item form__select' id="doctor" v-model='doctor'>
           <option value="ivanov">Иванов</option>
           <option value="zakharova">Захаров</option>
           <option value="chernysheva">Чернышева</option>
@@ -125,7 +125,7 @@
       </div>
       <div class='form__itemContainer form__itemCheckbox'>
         <label class='form__label form__labelCheck' for="sms">Не отправлять СМС</label>
-        <input class='form__item form__itemSms' type="checkbox" id="sms">
+        <input class='form__item form__itemSms' type="checkbox" id="sms" v-model="sms">
       </div> 
     </fieldset>
     <fieldset class="form__container">
@@ -228,7 +228,7 @@
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="docs-series">Серия</label>
-        <input class='form__item' type="text"  id="docs-series">
+        <input class='form__item' type="text"  id="docs-series" v-model="series">
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="docs-number">Номер</label>
@@ -257,7 +257,7 @@
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="docs-organization">Кем выдан</label>
-        <input class='form__item' type="text"  id="docs-organization">
+        <input class='form__item' type="text"  id="docs-organization" v-model="issued">
       </div>
       <div class='form__itemContainer'>
         <label class='form__label' for="date-of-issue">Дата выдачи*</label>
@@ -285,9 +285,11 @@ export default {
       firstname: '',
       lastname: '',
       dateOfBirth: '',
-      phone: '7',
+      phone: '',
       gender: '',
       selected: [],
+      doctor: '',
+      sms: false,
       postindex: '',
       country: '',
       region: '',
@@ -295,8 +297,11 @@ export default {
       street: '',
       houseNumber: '',
       typeOfDocument: '',
+      series: '',
       documentNumber: '',
+      issued: '',
       dateOfIssue: '',
+      userCreated: false,
   }),
   validations: {
     surname: { required, minLength: minLength(2), alpha },
@@ -319,10 +324,38 @@ export default {
   methods: {
     onSubmit() {
       if (this.$v.$invalid) {
-        this.$v.$touch()
-        return;
+        this.$v.$touch();
+      }     
+      
+      const formData = {
+        surname: this.surname,
+        firstname: this.firstname,
+        lastname: this.lastname,
+        dateOfBirth: this.dateOfBirth,
+        phone: this.phone,
+        gender: this.gender,
+        client: this.selected,
+        doctor: this.doctor,
+        sms: this.sms,
+        postindex: this.postindex,
+        country: this.country,
+        region: this.region,
+        city: this.city,
+        street: this.street,
+        houseNumber: this.houseNumber,
+        typeOfDocument: this.typeOfDocument,
+        series: this.series,
+        documentNumber: this.documentNumber,
+        issued: this.issued,
+        dateOfIssue: this.dateOfIssue,
       }
+
+      const formDataValues = Object.values(formData);
+      this.userCreated = formDataValues.every((item) => item.value !== undefined || item.length !== 0);
+      const userCreationState = this.userCreated;
+      this.$emit('isUserCreated', userCreationState);
     }
   },
 }
+
 </script>
